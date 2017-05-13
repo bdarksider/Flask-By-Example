@@ -16,7 +16,9 @@ packaging==16.8
 psycopg2==2.7.1
 pyparsing==2.2.0
 python-editor==1.0.3
+redis==2.10.5
 requests==2.14.2
+rq==0.7.1
 six==1.10.0
 SQLAlchemy==1.1.9
 Werkzeug==0.12.1
