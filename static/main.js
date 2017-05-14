@@ -59,5 +59,35 @@
                 poller();
             }
         }
-    ]);
+    ])
+    .directive('wordCountChart', ['$parse', function($parse) {
+        return {
+            restrict: 'E',
+            replace: true,
+            template: '<div id="chart"></div>',
+            link: function (scope) {
+                scope.$watch('wordcounts', function() {
+                    d3.select('#chart').selectAll('*').remove();
+                    var data = {};
+                    for (var i = 0; i < scope.wordcounts.length; i++) {
+                        data[scope.wordcounts[i][0]] = scope.wordcounts[i][1];
+                    }
+                    for (var word in data) {
+                        d3.select('#chart')
+                            .append('div')
+                            .selectAll('div')
+                            .data(word[0])
+                            .enter()
+                            .append('div')
+                            .style('width', function() {
+                                return (data[word] * 20) + 'px';
+                            })
+                            .text(function(d) {
+                                return word;
+                            });
+                    }
+                }, true);
+            }
+        };
+    }])
 }());
