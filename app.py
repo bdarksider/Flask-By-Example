@@ -101,9 +101,5 @@ def get_results(job_key):
     else:
         return "Nay!", 202
 
-@app.route('/amaze', methods=['GET'])
-def get_amaze():
-    return "this"
-
 if __name__ == '__main__':
     app.run()
